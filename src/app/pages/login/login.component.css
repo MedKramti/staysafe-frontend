@@ -1,0 +1,13 @@
+form {
+  width: 500px;
+  text-align: center;
+  margin: auto auto;
+}
+
+input {
+  border-radius: 15px !important;
+}
+
+.btn {
+  padding: 12px 15px;
+}
