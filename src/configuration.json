@@ -1,3 +1,4 @@
 {
-  "auth-server": "http://localhost:8081"
+  "auth-server": "http://localhost:8081",
+  "shelter-server": "http://localhost:8080"
 }

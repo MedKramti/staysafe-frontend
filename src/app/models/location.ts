@@ -1,3 +1,12 @@
+export interface LocationProp {
+  lng: number;
+  lat: number;
+  street: string;
+  city: string;
+  state: string;
+  postcode: string;
+  country: string;
+}
 export class Location {
   private lng: number;
   private lat: number;
@@ -7,22 +16,8 @@ export class Location {
   private postcode: string;
   private country: string;
 
-  constructor(
-    lng: number,
-    lat: number,
-    street: string,
-    city: string,
-    state: string,
-    postcode: string,
-    country: string
-  ) {
-    this.lng = lng;
-    this.lat = lat;
-    this.street = street;
-    this.city = city;
-    this.state = state;
-    this.postcode = postcode;
-    this.country = country;
+  constructor(location: LocationProp) {
+    Object.assign(this, location);
   }
 
   public getStreet(): string {

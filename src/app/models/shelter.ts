@@ -1,4 +1,14 @@
-import { Location } from './location';
+import { Location, LocationProp } from './location';
+export interface ShelterProp {
+  id: number;
+  name: string;
+  description: string;
+  capacity: number;
+  location: LocationProp;
+  addedBy: string;
+  addedDate: string;
+  approved: boolean;
+}
 export class Shelter {
   private id: number;
   private name: string;
@@ -9,24 +19,9 @@ export class Shelter {
   private addedDate: string;
   private approved: boolean;
 
-  constructor(
-    id: number,
-    name: string,
-    description: string,
-    capacity: number,
-    location: Location,
-    addedBy: string,
-    addedDate: string,
-    approved: boolean
-  ) {
-    this.id = id;
-    this.name = name;
-    this.description = description;
-    this.capacity = capacity;
-    this.location = location;
-    this.addedBy = addedBy;
-    this.addedDate = addedDate;
-    this.approved = approved;
+  constructor(shelter: ShelterProp) {
+    Object.assign(this, shelter);
+    this.location = new Location(shelter.location);
   }
   public setName(name: string) {
     this.name = name;

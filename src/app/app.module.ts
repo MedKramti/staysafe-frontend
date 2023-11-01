@@ -3,12 +3,14 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MapComponent } from './components/map/map.component';
 import { LoginComponent } from './pages/login/login.component';
 @NgModule({
-  declarations: [AppComponent, LoginComponent],
+  declarations: [AppComponent, LoginComponent, MapComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -16,6 +18,7 @@ import { LoginComponent } from './pages/login/login.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    LeafletModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
