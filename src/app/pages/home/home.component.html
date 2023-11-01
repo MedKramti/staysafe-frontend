@@ -1,0 +1,33 @@
+<div>navbar</div>
+
+<div class="row m-4 mb-4">
+  <div class="map col-lg-8 col-md-8 col-sm-12">
+    <app-map (clickedShelter)="onShelterClick($event)"></app-map>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-12">
+    <div class="shelter-info" *ngIf="selectedShelter">
+      <h4>Shelter Info</h4>
+      <h6>Name</h6>
+      {{ selectedShelter.getName() }}
+      <h6 class="mt-2">Address</h6>
+      <div class="add">
+        {{ selectedShelter.getLocation().getStreet() }},{{
+          selectedShelter.getLocation().getState()
+        }}
+      </div>
+      <div class="add">
+        {{ selectedShelter.getLocation().getPostCode() }},{{
+          selectedShelter.getLocation().getCity()
+        }}
+      </div>
+      <div class="add">
+        {{ selectedShelter.getLocation().getCountry() }}
+      </div>
+      <h6 class="mt-2">Coordination</h6>
+      <div class="add">
+        {{ selectedShelter.getLocation().getLat() }},
+        {{ selectedShelter.getLocation().getLng() }}
+      </div>
+    </div>
+  </div>
+</div>

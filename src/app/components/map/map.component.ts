@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import * as Leaflet from 'leaflet';
 import { Shelter, ShelterProp } from 'src/app/models/shelter';
 import { ShelterService } from 'src/app/services/shelter.service';
+import { ShelterUtils } from 'src/app/utils/shelter-utils';
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -16,6 +17,9 @@ export class MapComponent implements OnInit {
     zoom: 5,
     center: new Leaflet.LatLng(43.530147, 16.488932),
   };
+
+  @Output()
+  clickedShelter: EventEmitter<Shelter> = new EventEmitter();
 
   constructor(private shelterService: ShelterService) {}
 
@@ -33,7 +37,6 @@ export class MapComponent implements OnInit {
         this.shelters = data.map(
           (shelter: ShelterProp) => new Shelter(shelter)
         );
-
         this.sheltersFetched = true;
         this.addMarkersToMap(this.shelters);
       },
@@ -65,7 +68,14 @@ export class MapComponent implements OnInit {
         iconUrl: '../../../assets/img/map-marker.svg',
       }),
       title: name,
-    } as Leaflet.MarkerOptions);
+    } as Leaflet.MarkerOptions).on('click', (event) => {
+      let shelter = ShelterUtils.findShelter(
+        this.shelters,
+        event.latlng.lat,
+        event.latlng.lng
+      );
+      this.clickedShelter.emit(shelter);
+    });
   }
 }
 

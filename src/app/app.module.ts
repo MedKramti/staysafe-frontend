@@ -9,8 +9,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MapComponent } from './components/map/map.component';
 import { LoginComponent } from './pages/login/login.component';
+import { HomeComponent } from './pages/home/home.component';
 @NgModule({
-  declarations: [AppComponent, LoginComponent, MapComponent],
+  declarations: [AppComponent, LoginComponent, MapComponent, HomeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
