@@ -1,13 +1,13 @@
 import { Location, LocationProp } from './location';
 export interface ShelterProp {
-  id: number;
+  id: number | null;
   name: string;
   description: string;
   capacity: number;
   location: LocationProp;
-  addedBy: string;
-  addedDate: string;
-  approved: boolean;
+  addedBy: string | null;
+  addedDate: string | null;
+  approved: boolean | null;
 }
 export class Shelter {
   private id: number;

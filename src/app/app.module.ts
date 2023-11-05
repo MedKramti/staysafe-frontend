@@ -11,8 +11,10 @@ import { MapComponent } from './components/map/map.component';
 import { LoginComponent } from './pages/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { AddShelterComponent } from './pages/add-shelter/add-shelter.component';
+import { LoadingComponent } from './components/loading/loading.component';
 @NgModule({
-  declarations: [AppComponent, LoginComponent, MapComponent, HomeComponent, NavbarComponent],
+  declarations: [AppComponent, LoginComponent, MapComponent, HomeComponent, NavbarComponent, AddShelterComponent, LoadingComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

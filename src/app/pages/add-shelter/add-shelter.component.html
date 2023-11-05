@@ -1,0 +1,221 @@
+<app-navbar></app-navbar>
+<div class="add-shelter">
+  <h2 class="text-center text-primary">Add Shelter</h2>
+  <form [formGroup]="shelterBasicInfoForm" *ngIf="stage == 1">
+    <label class="mb-2">Shelter name</label>
+    <input
+      type="text"
+      class="form-control mb-3"
+      placeholder="Shelter name"
+      name="name"
+      formControlName="name"
+    />
+    <div
+      class="text-danger"
+      *ngIf="
+        !getControl('name', shelterBasicInfoForm).valid &&
+        getControl('name', shelterBasicInfoForm).touched
+      "
+    >
+      This field is invalid
+    </div>
+
+    <label class="mb-2">Shelter Description</label>
+    <textarea
+      class="form-control mb-3"
+      placeholder="Shelter description"
+      name="description"
+      formControlName="description"
+    ></textarea>
+    <div
+      class="text-danger"
+      *ngIf="
+        !getControl('description', shelterBasicInfoForm).valid &&
+        getControl('description', shelterBasicInfoForm).touched
+      "
+    >
+      Description must be less then 256 character
+    </div>
+    <label class="mb-2">Shelter Capacity</label>
+    <input
+      type="number"
+      class="form-control mb-3"
+      placeholder="Shelter capacity"
+      name="capacity"
+      formControlName="capacity"
+    />
+    <div
+      class="text-danger"
+      *ngIf="
+        !getControl('capacity', shelterBasicInfoForm).valid &&
+        getControl('capacity', shelterBasicInfoForm).touched
+      "
+    >
+      This field is invalid
+    </div>
+  </form>
+
+  <form [formGroup]="shelterAddressForm">
+    <div class="stage" *ngIf="stage == 2">
+      <label class="mb-2">Street</label>
+      <input
+        type="text"
+        class="form-control mb-3"
+        placeholder="Street"
+        name="street"
+        formControlName="street"
+      />
+      <div
+        class="text-danger"
+        *ngIf="
+          !getControl('street', shelterAddressForm).valid &&
+          getControl('street', shelterAddressForm).touched
+        "
+      >
+        This field is invalid
+      </div>
+      <label class="mb-2">City</label>
+      <input
+        type="text"
+        class="form-control mb-3"
+        placeholder="City"
+        name="city"
+        formControlName="city"
+      />
+      <div
+        class="text-danger"
+        *ngIf="
+          !getControl('city', shelterAddressForm).valid &&
+          getControl('city', shelterAddressForm).touched
+        "
+      >
+        This field is invalid
+      </div>
+      <div class="d-flex mb-2">
+        <div class="w-100 me-3">
+          <label class="mb-2">State</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="State"
+            name="state"
+            formControlName="state"
+          />
+        </div>
+
+        <div class="w-100 ms-3">
+          <label class="mb-2">Zip code</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Zip code"
+            name="zip"
+            formControlName="zip"
+          />
+        </div>
+      </div>
+      <div
+        class="text-danger"
+        *ngIf="
+          !getControl('state', shelterAddressForm).valid &&
+          getControl('state', shelterAddressForm).touched
+        "
+      >
+        State is invalid
+      </div>
+      <div
+        class="text-danger"
+        *ngIf="
+          !getControl('zip', shelterAddressForm).valid &&
+          getControl('zip', shelterAddressForm).touched
+        "
+      >
+        Zip code is invalid
+      </div>
+      <label class="mb-2">Country</label>
+      <input
+        type="text"
+        class="form-control mb-4"
+        placeholder="Country"
+        name="country"
+        formControlName="country"
+      />
+      <div
+        class="text-danger"
+        *ngIf="
+          !getControl('country', shelterAddressForm).valid &&
+          getControl('country', shelterAddressForm).touched
+        "
+      >
+        This field is invalid
+      </div>
+    </div>
+  </form>
+
+  <form [formGroup]="shelterLatLngForm" *ngIf="stage == 3">
+    <app-loading
+      [message]="'Fetching Latitude and Longitude from address'"
+      *ngIf="fetchingLngLat == null"
+    ></app-loading>
+    <div class="text-danger" *ngIf="fetchingLngLat == false">
+      Unable to fetch Latitude and Longitude from the given address<br />
+      Please type them manually
+    </div>
+    <div class="text-success" *ngIf="fetchingLngLat == true">
+      Latitude and Longitude were automatically fetched from the address
+    </div>
+    <label class="mb-2">Latitude</label>
+    <input
+      type="text"
+      class="form-control mb-4"
+      placeholder="Latitude"
+      name="lat"
+      formControlName="lat"
+    />
+    <label class="mb-2">Longitude</label>
+    <input
+      type="text"
+      class="form-control mb-4"
+      placeholder="Longitude"
+      name="lng"
+      formControlName="lng"
+    />
+
+    <div class="btns row" *ngIf="stage <= 3">
+      <div class="col-6">
+        <input
+          type="button"
+          class="btn btn-primary w-100"
+          [value]="stage != 3 ? 'Next' : 'Add'"
+          (click)="next()"
+        />
+      </div>
+      <div class="col-6">
+        <input
+          type="button"
+          class="btn btn-secondary w-100"
+          value="Back"
+          (click)="back()"
+          [disabled]="stage <= 1"
+        />
+      </div>
+    </div>
+
+    <app-loading
+      [message]="'Adding Shelter ... '"
+      *ngIf="displayLoadingAfterSubmit"
+    ></app-loading>
+
+    <div class="text-danger">{{ errorMessage }}</div>
+    <div class="text-success">{{ successMessage }}</div>
+
+    <div class="btns row mt-3" *ngIf="stage > 3">
+      <div class="col-6">
+        <a class="btn btn-primary w-100">Return home</a>
+      </div>
+      <div class="col-6">
+        <a class="btn btn-secondary w-100">Add another shelter</a>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,6 +1,6 @@
 export interface LocationProp {
-  lng: number;
-  lat: number;
+  lng: number | null;
+  lat: number | null;
   street: string;
   city: string;
   state: string;
