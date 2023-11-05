@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -14,12 +14,12 @@ import { ShelterService } from 'src/app/services/shelter.service';
   templateUrl: './add-shelter.component.html',
   styleUrls: ['./add-shelter.component.css'],
 })
-export class AddShelterComponent {
-  fetchingLngLat: boolean | null = null;
-  displayLoadingAfterSubmit = false;
-  errorMessage = '';
-  successMessage = '';
-  stage = 1;
+export class AddShelterComponent implements OnInit {
+  fetchingLngLat: boolean | null;
+  displayLoadingAfterSubmit: boolean;
+  errorMessage: string;
+  successMessage: string;
+  stage: number;
   shelterBasicInfoForm = this.fb.group({
     name: [
       '',
@@ -76,6 +76,13 @@ export class AddShelterComponent {
     private shelterService: ShelterService,
     private nominatimService: NominatimService
   ) {}
+  ngOnInit(): void {
+    this.fetchingLngLat = null;
+    this.displayLoadingAfterSubmit = false;
+    this.errorMessage = '';
+    this.successMessage = '';
+    this.stage = 1;
+  }
 
   /**
    * This method is used to add a shelter to the database
@@ -117,9 +124,8 @@ export class AddShelterComponent {
         this.shelterBasicInfoForm.reset();
       },
       error: (err) => {
-        console.log(err);
-      },
-      complete: () => {
+        this.errorMessage =
+          'Unable to add shelter please contact the administrator';
         this.displayLoadingAfterSubmit = false;
       },
     });
@@ -187,5 +193,12 @@ export class AddShelterComponent {
     if (this.stage > 1) {
       this.stage--;
     }
+  }
+
+  reset() {
+    this.shelterLatLngForm.reset();
+    this.shelterAddressForm.reset();
+    this.shelterBasicInfoForm.reset();
+    this.ngOnInit();
   }
 }

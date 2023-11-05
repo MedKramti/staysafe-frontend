@@ -1,20 +1,29 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { LoadingComponent } from './components/loading/loading.component';
 import { MapComponent } from './components/map/map.component';
-import { LoginComponent } from './pages/login/login.component';
-import { HomeComponent } from './pages/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AddShelterComponent } from './pages/add-shelter/add-shelter.component';
-import { LoadingComponent } from './components/loading/loading.component';
+import { HomeComponent } from './pages/home/home.component';
+import { LoginComponent } from './pages/login/login.component';
+import { AddAuthTokenInterceptor } from './services/add-auth-token-interceptor.service';
 @NgModule({
-  declarations: [AppComponent, LoginComponent, MapComponent, HomeComponent, NavbarComponent, AddShelterComponent, LoadingComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    MapComponent,
+    HomeComponent,
+    NavbarComponent,
+    AddShelterComponent,
+    LoadingComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -24,7 +33,13 @@ import { LoadingComponent } from './components/loading/loading.component';
     ReactiveFormsModule,
     LeafletModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AddAuthTokenInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

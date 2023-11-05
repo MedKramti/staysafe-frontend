@@ -180,7 +180,8 @@
       name="lng"
       formControlName="lng"
     />
-
+  </form>
+  <div class="form-btn">
     <div class="btns row" *ngIf="stage <= 3">
       <div class="col-6">
         <input
@@ -211,11 +212,13 @@
 
     <div class="btns row mt-3" *ngIf="stage > 3">
       <div class="col-6">
-        <a class="btn btn-primary w-100">Return home</a>
+        <a class="btn btn-primary w-100" routerLink="/home">Return home</a>
       </div>
       <div class="col-6">
-        <a class="btn btn-secondary w-100">Add another shelter</a>
+        <a class="btn btn-secondary w-100" (click)="reset()"
+          >Add another shelter</a
+        >
       </div>
     </div>
-  </form>
+  </div>
 </div>

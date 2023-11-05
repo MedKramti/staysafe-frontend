@@ -19,7 +19,8 @@ a {
 .text-primary {
   color: #0c356a !important;
 }
-form {
+form,
+.form-btn {
   width: 500px;
   text-align: center;
   margin: auto auto;
