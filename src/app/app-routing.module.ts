@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
 import { AddShelterComponent } from './pages/add-shelter/add-shelter.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -10,12 +11,20 @@ const routes: Routes = [
     component: LoginComponent,
   },
   {
+    path: 'unauthorized',
+    component: UnauthorizedComponent,
+  },
+  {
     path: 'home',
     component: HomeComponent,
   },
   {
     path: 'add-shelter',
     component: AddShelterComponent,
+  },
+  {
+    path: '**',
+    component: LoginComponent,
   },
 ];
 

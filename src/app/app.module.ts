@@ -14,6 +14,7 @@ import { AddShelterComponent } from './pages/add-shelter/add-shelter.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AddAuthTokenInterceptor } from './services/add-auth-token-interceptor.service';
+import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +24,7 @@ import { AddAuthTokenInterceptor } from './services/add-auth-token-interceptor.s
     NavbarComponent,
     AddShelterComponent,
     LoadingComponent,
+    UnauthorizedComponent,
   ],
   imports: [
     BrowserModule,

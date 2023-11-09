@@ -5,6 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Shelter, ShelterProp } from 'src/app/models/shelter';
 import { NominatimService } from 'src/app/services/nominatim-service.service';
 import { ShelterService } from 'src/app/services/shelter.service';
@@ -74,7 +75,8 @@ export class AddShelterComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private shelterService: ShelterService,
-    private nominatimService: NominatimService
+    private nominatimService: NominatimService,
+    private router: Router
   ) {}
   ngOnInit(): void {
     this.fetchingLngLat = null;
@@ -124,6 +126,9 @@ export class AddShelterComponent implements OnInit {
         this.shelterBasicInfoForm.reset();
       },
       error: (err) => {
+        if (err.status === 401) {
+          this.router.navigateByUrl('/unauthorized');
+        }
         this.errorMessage =
           'Unable to add shelter please contact the administrator';
         this.displayLoadingAfterSubmit = false;
