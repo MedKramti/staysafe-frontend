@@ -1,0 +1,77 @@
+<app-navbar></app-navbar>
+<div class="pending-shelters m-3">
+  <h2 class="text-center text-primary">Pending Shelters</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Capacity</th>
+        <th scope="col">Address</th>
+        <th scope="col">Coordination</th>
+        <th scope="col">Added Date</th>
+        <th scope="col">Added By</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let shelter of pendingShelters">
+        <th scope="row">{{ shelter.getId() }}</th>
+        <td>{{ shelter.getName() }}</td>
+        <td>{{ shelter.getDescription() }}</td>
+        <td>{{ shelter.getCapacity() }}</td>
+        <td>
+          {{
+            shelter.getLocation().getStreet() +
+              " " +
+              shelter.getLocation().getCity() +
+              " " +
+              shelter.getLocation().getState() +
+              " " +
+              shelter.getLocation().getPostCode()
+          }}
+        </td>
+        <td>
+          {{
+            shelter.getLocation().getLat() +
+              " " +
+              shelter.getLocation().getLng()
+          }}
+        </td>
+        <td>{{ shelter.getAddedDate() }}</td>
+        <td>{{ shelter.getAddedBy() }}</td>
+        <td>
+          <img
+            src="../../../assets/img/approve.svg"
+            (click)="open(content, shelter)"
+            width="32"
+            alt="approve icon"
+          />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Approve shelter</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">Are you sure you want to approve this shelter?</div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-success"
+      (click)="approve() && modal.close('Save click')"
+    >
+      Approve
+    </button>
+  </div>
+</ng-template>

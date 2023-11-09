@@ -10,11 +10,12 @@ import { AppComponent } from './app.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { MapComponent } from './components/map/map.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
 import { AddShelterComponent } from './pages/add-shelter/add-shelter.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
+import { ReviewSheltersComponent } from './pages/review-shelters/review-shelters.component';
 import { AddAuthTokenInterceptor } from './services/add-auth-token-interceptor.service';
-import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +26,7 @@ import { UnauthorizedComponent } from './components/unauthorized/unauthorized.co
     AddShelterComponent,
     LoadingComponent,
     UnauthorizedComponent,
+    ReviewSheltersComponent,
   ],
   imports: [
     BrowserModule,

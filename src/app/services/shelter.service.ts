@@ -18,4 +18,14 @@ export class ShelterService {
   public add(shelter: Shelter) {
     return this.http.post(this.shelterServer + '/api/shelters', shelter);
   }
+
+  public getPending() {
+    return this.http.get<Array<ShelterProp>>(
+      this.shelterServer + '/api/shelters/pending-approval'
+    );
+  }
+
+  public approveShelter(shelter: Shelter) {
+    return this.http.put(this.shelterServer + '/api/shelters/approve', shelter);
+  }
 }

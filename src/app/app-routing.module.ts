@@ -4,6 +4,7 @@ import { UnauthorizedComponent } from './components/unauthorized/unauthorized.co
 import { AddShelterComponent } from './pages/add-shelter/add-shelter.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
+import { ReviewSheltersComponent } from './pages/review-shelters/review-shelters.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'add-shelter',
     component: AddShelterComponent,
+  },
+  {
+    path: 'review-shelters',
+    component: ReviewSheltersComponent,
   },
   {
     path: '**',
