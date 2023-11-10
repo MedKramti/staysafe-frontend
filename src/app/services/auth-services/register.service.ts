@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { default as configuration } from './../../configuration.json';
+import { default as configuration } from '../../../configuration.json';
 
 @Injectable({
   providedIn: 'root',

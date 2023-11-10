@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   AuthRequest,
   AuthResponse,
   LoginService,
-} from 'src/app/services/login-service.service';
+} from 'src/app/services/auth-services/login-service.service';
 import { LoginUtils } from 'src/app/utils/login-utils';
 
 @Component({
@@ -13,19 +14,24 @@ import { LoginUtils } from 'src/app/utils/login-utils';
 })
 export class LoginComponent {
   errorMessage: string = '';
-  constructor(private loginService: LoginService) {}
+  constructor(private loginService: LoginService, private router: Router) {}
 
   login(loginInput: AuthRequest) {
+    LoginUtils.clearToken();
     this.errorMessage = '';
     this.loginService.login(loginInput).subscribe({
       next: (data: AuthResponse) => {
         LoginUtils.saveToken(data.token);
+        this.router.navigate(['/', 'home']);
       },
       error: (err) => {
-        if (err.status === 401)
-          this.errorMessage = 'Invalid username or password';
-        else this.errorMessage = 'System error please contact administrator';
+        this.errorMessage = 'Invalid username or password';
       },
     });
+  }
+
+  anonymousLogin() {
+    LoginUtils.saveToken('Anonymous');
+    this.router.navigate(['/', 'home']);
   }
 }

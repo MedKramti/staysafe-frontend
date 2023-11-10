@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Shelter, ShelterProp } from 'src/app/models/shelter';
-import { ShelterService } from 'src/app/services/shelter.service';
+import { ShelterService } from 'src/app/services/shelter-services/shelter.service';
 
 @Component({
   selector: 'app-review-shelters',

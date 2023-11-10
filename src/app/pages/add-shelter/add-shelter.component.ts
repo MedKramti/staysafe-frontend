@@ -7,8 +7,8 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Shelter, ShelterProp } from 'src/app/models/shelter';
-import { NominatimService } from 'src/app/services/nominatim-service.service';
-import { ShelterService } from 'src/app/services/shelter.service';
+import { NominatimService } from 'src/app/services/shelter-services/nominatim-service.service';
+import { ShelterService } from 'src/app/services/shelter-services/shelter.service';
 
 @Component({
   selector: 'app-add-shelter',

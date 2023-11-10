@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Shelter, ShelterProp } from '../models/shelter';
-import { default as configuration } from './../../configuration.json';
+import { default as configuration } from '../../../configuration.json';
+import { Shelter, ShelterProp } from '../../models/shelter';
 @Injectable({
   providedIn: 'root',
 })

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import * as Leaflet from 'leaflet';
 import { Shelter, ShelterProp } from 'src/app/models/shelter';
-import { ShelterService } from 'src/app/services/shelter.service';
+import { ShelterService } from 'src/app/services/shelter-services/shelter.service';
 import { ShelterUtils } from 'src/app/utils/shelter-utils';
 @Component({
   selector: 'app-map',

@@ -19,7 +19,7 @@ export class AddAuthTokenInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     let token = LoginUtils.getToken();
-    if (token) {
+    if (token && token != 'Anonymous') {
       const authReq = req.clone({
         headers: req.headers.set('Authorization', `Bearer ${token}`),
       });

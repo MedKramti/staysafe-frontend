@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import {
   RegisterRequest,
   RegisterService,
-} from 'src/app/services/register.service';
+} from 'src/app/services/auth-services/register.service';
 
 @Component({
   selector: 'app-register',

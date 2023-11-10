@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { default as configuration } from './../../configuration.json';
+import { Observable } from 'rxjs';
+import { default as configuration } from '../../../configuration.json';
 @Injectable({
   providedIn: 'root',
 })
@@ -13,6 +14,10 @@ export class LoginService {
       this.authServer + '/api/login',
       loginInput
     );
+  }
+
+  public isAdmin(): Observable<boolean> {
+    return this.http.get<boolean>(this.authServer + '/api/login/is-admin');
   }
 }
 export interface AuthRequest {
