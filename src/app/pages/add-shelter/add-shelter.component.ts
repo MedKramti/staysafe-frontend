@@ -124,6 +124,7 @@ export class AddShelterComponent implements OnInit {
       next: (data) => {
         this.successMessage = 'Shelter is added, an admin will review it soon!';
         this.shelterBasicInfoForm.reset();
+        this.displayLoadingAfterSubmit = false;
       },
       error: (err) => {
         if (err.status === 401) {

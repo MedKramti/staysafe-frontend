@@ -14,7 +14,6 @@ export class AdminGuard {
   constructor(private loginService: LoginService, private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    console.log('checking admin');
     if (
       !LoginUtils.getToken() ||
       LoginUtils.getToken() == null ||

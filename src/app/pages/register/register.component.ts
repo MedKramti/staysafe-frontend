@@ -47,6 +47,8 @@ export class RegisterComponent {
   ) {}
 
   register() {
+    this.errorMessage = '';
+    this.successMessage = '';
     if (!this.registerForm.valid) {
       this.errorMessage = 'Please fill the form correctly!';
       return;
@@ -61,8 +63,13 @@ export class RegisterComponent {
     this.registerService.register(registerInfo).subscribe({
       next: (data) => {
         this.successMessage = 'Your account is created you can login now';
+        this.registerForm.reset();
       },
       error: (err) => {
+        if (err.status == 400) {
+          this.errorMessage = err.error.error;
+          return;
+        }
         this.errorMessage =
           'Please contact the administrator an error occurred while creating your account';
       },

@@ -1,3 +1,7 @@
 .logo .logo-text span {
   font-size: 1.8rem;
 }
+
+a {
+  cursor: pointer;
+}

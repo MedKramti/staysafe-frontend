@@ -13,7 +13,9 @@ import { LoginUtils } from '../utils/login-utils';
 })
 export class AddAuthTokenInterceptor implements HttpInterceptor {
   constructor() {}
-
+  /***
+   * Add Authorization to http header
+   */
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler

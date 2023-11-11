@@ -8,6 +8,17 @@
   </div>
   <div class="nav-items float-end">
     <a class="me-3" routerLinkActive="fw-bold" routerLink="/home">Home</a>
-    <a routerLinkActive="fw-bold" routerLink="/add-shelter">Add a shelter</a>
+    <a routerLinkActive="fw-bold" *ngIf="!isAnonymous" routerLink="/add-shelter"
+      >Add a shelter</a
+    >
+    <a
+      class="ms-3"
+      routerLinkActive="fw-bold"
+      routerLink="/review-shelters"
+      *ngIf="isAdmin"
+      >Review Shelters</a
+    >
+    <a class="ms-3" (click)="logout()" *ngIf="!isAnonymous">Logout</a>
+    <a class="ms-3" routerLink="/" *ngIf="isAnonymous">Login</a>
   </div>
 </div>
