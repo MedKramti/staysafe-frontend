@@ -13,10 +13,12 @@ import { LoginUtils } from 'src/app/utils/login-utils';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
+  displayLoading = false;
   errorMessage: string = '';
   constructor(private loginService: LoginService, private router: Router) {}
 
   login(loginInput: AuthRequest) {
+    this.displayLoading = true;
     LoginUtils.clearToken();
     this.errorMessage = '';
     this.loginService.login(loginInput).subscribe({
@@ -26,6 +28,7 @@ export class LoginComponent {
       },
       error: (err) => {
         this.errorMessage = 'Invalid username or password';
+        this.displayLoading = false;
       },
     });
   }
