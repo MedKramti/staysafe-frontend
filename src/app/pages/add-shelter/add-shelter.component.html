@@ -133,13 +133,26 @@
         Zip code is invalid
       </div>
       <label class="mb-2">Country</label>
-      <input
+
+      <select
+        class="form-control mb-4"
+        name="country"
+        id="country"
+        formControlName="country"
+      >
+        <option value="" disabled selected>Select Country</option>
+        <option *ngFor="let country of countries" [value]="country.code">
+          {{ country.name }}
+        </option>
+      </select>
+
+      <!--<input
         type="text"
         class="form-control mb-4"
         placeholder="Country"
         name="country"
         formControlName="country"
-      />
+      />-->
       <div
         class="text-danger"
         *ngIf="

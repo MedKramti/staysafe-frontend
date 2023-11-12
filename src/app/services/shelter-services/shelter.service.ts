@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { default as configuration } from '../../../configuration.json';
+import { environment } from 'src/environments/environments';
 import { Shelter, ShelterProp } from '../../models/shelter';
 @Injectable({
   providedIn: 'root',
 })
 export class ShelterService {
-  private shelterServer: string = configuration['shelter-server'];
+  private shelterServer: string = environment.SHELTER_SERVER;
   constructor(private http: HttpClient) {}
 
   public get() {

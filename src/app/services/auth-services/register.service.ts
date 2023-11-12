@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { default as configuration } from '../../../configuration.json';
+import { environment } from 'src/environments/environments';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RegisterService {
-  private authServer: string = configuration['auth-server'];
+  private authServer: string = environment.AUTHSERVER_SERVER;
   constructor(private http: HttpClient) {}
 
   public register(registerInfo: RegisterRequest) {

@@ -6,6 +6,10 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import {
+  Countries,
+  countries,
+} from 'src/app/components/countries/countries-data';
 import { Shelter, ShelterProp } from 'src/app/models/shelter';
 import { NominatimService } from 'src/app/services/shelter-services/nominatim-service.service';
 import { ShelterService } from 'src/app/services/shelter-services/shelter.service';
@@ -21,6 +25,8 @@ export class AddShelterComponent implements OnInit {
   errorMessage: string;
   successMessage: string;
   stage: number;
+  countries: Countries[] = countries;
+
   shelterBasicInfoForm = this.fb.group({
     name: [
       '',
@@ -111,8 +117,8 @@ export class AddShelterComponent implements OnInit {
         postcode: this.getControl('zip', this.shelterAddressForm).value,
         country: this.getControl('country', this.shelterAddressForm).value,
 
-        lng: this.getControl('lat', this.shelterLatLngForm).value,
-        lat: this.getControl('lng', this.shelterLatLngForm).value,
+        lng: this.getControl('lng', this.shelterLatLngForm).value,
+        lat: this.getControl('lat', this.shelterLatLngForm).value,
       },
       addedBy: null,
       addedDate: null,
